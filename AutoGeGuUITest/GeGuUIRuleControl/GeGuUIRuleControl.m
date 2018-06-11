@@ -48,11 +48,12 @@
     [geguView setBackgroundColor:[UIColor redColor]];
     NSMutableDictionary *dic = @{}.mutableCopy;
     CGFloat max_y = 0;
-    for (int column = 3; column >= 0; column--) {
-        NSArray *item = rule[column];
-        if ([rule[column] count] > 0) {
-            CGFloat colmun_Width = size.width/(column+1);
-            for (int index = 0; index < [item count]; index++) {
+    for (int i = 0; i < [rule count]; i++) {
+        NSArray *item = rule[i];
+        int column = (int)[item count];
+        if (column > 0) {
+            CGFloat colmun_Width = size.width/[item count];
+            for (int index = 0; index < column; index++) {
                 //先从缓存中取，没有取到才去创建。
                 UILabel *title_Key = [self getKeyLabelById:item[index]];
                 if (!title_Key) {
